@@ -1,7 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CatsController } from './cats.controller';
 import { CatsService } from './cats.service';
-import { CreateCatDto } from './create-cat-dto/create-cat-dto';
+import { CatDTO } from './create-cat-dto/create-cat-dto';
+import { ICat } from './interfaces/cat.interface';
 
 describe('Cats Controller', () => {
   let module: TestingModule;
@@ -19,27 +20,27 @@ describe('Cats Controller', () => {
   });
 
   describe('findAll', () => {
-    it('should return "This action returns all cats"', () => {
+    it('should return []', () => {
       const appController = module.get<CatsController>(CatsController);
-      expect(appController.findAll()).toBe('This action returns all cats');
+      expect(appController.findAll()).toEqual([]);
     });
   });
 
-  describe('create', () => {
-    it('should return "This action adds a new cat"', () => {
-      const appController = module.get<CatsController>(CatsController);
-      const data: CreateCatDto = {
-        name: 'Test',
-        age: 3,
-        breed: 'aby',
-      };
+  // describe('create', () => {
+  //   it('should return "This action adds a new cat"', () => {
+  //     const appController = module.get<CatsController>(CatsController);
+  //     const data: ICat = {
+  //       name: 'Test',
+  //       age: 3,
+  //       breed: 'aby',
+  //     };
+  //
+  //     expect(appController.create(data)).resolves.toBe(new CatDTO(data));
+  //   });
+  // });
 
-      expect(appController.create(data)).resolves.toBe(new CreateCatDto(data));
-    });
-  });
-
-  describe('create', () => {
-    it('should return "This action adds a new cat"', () => {
+  describe('findOne', () => {
+    it('should return "This action returns a id cat"', () => {
       const appController = module.get<CatsController>(CatsController);
       const id = 123;
 
