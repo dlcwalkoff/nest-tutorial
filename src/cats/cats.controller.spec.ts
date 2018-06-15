@@ -21,4 +21,11 @@ describe('Cats Controller', () => {
       expect(appController.findAll()).toBe('This action returns all cats');
     });
   });
+
+  describe('create', () => {
+    it('should return "This action adds a new cat"', () => {
+      const appController = module.get<CatsController>(CatsController);
+      expect(appController.create()).toBe('This action adds a new cat');
+    });
+  });
 });
