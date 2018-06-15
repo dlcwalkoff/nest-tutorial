@@ -1,15 +1,21 @@
-import { Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { CreateCatDto } from './create-cat-dto/create-cat-dto';
+import { CatsService } from './cats.service';
 
 @Controller('cats')
 export class CatsController {
+  constructor(
+    private service: CatsService,
+  ) {}
+
   @Get()
   findAll() {
     return 'This action returns all cats';
   }
 
   @Post()
-  create() {
-    return 'This action adds a new cat';
+  async create(@Body() newCat: CreateCatDto) {
+    return await this.service.create(newCat);
   }
 
   @Get(':id')

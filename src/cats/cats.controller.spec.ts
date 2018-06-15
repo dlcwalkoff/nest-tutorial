@@ -1,5 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CatsController } from './cats.controller';
+import { CatsService } from './cats.service';
+import { CreateCatDto } from './create-cat-dto/create-cat-dto';
 
 describe('Cats Controller', () => {
   let module: TestingModule;
@@ -7,6 +9,7 @@ describe('Cats Controller', () => {
   beforeAll(async () => {
     module = await Test.createTestingModule({
       controllers: [CatsController],
+      providers: [CatsService],
     }).compile();
   });
 
@@ -25,7 +28,13 @@ describe('Cats Controller', () => {
   describe('create', () => {
     it('should return "This action adds a new cat"', () => {
       const appController = module.get<CatsController>(CatsController);
-      expect(appController.create()).toBe('This action adds a new cat');
+      const data: CreateCatDto = {
+        name: 'Test',
+        age: 3,
+        breed: 'aby',
+      };
+
+      expect(appController.create(data)).resolves.toBe(new CreateCatDto(data));
     });
   });
 
