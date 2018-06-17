@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CatsController } from './cats.controller';
 import { CatsService } from './cats.service';
-import { CatDTO } from './create-cat-dto/create-cat-dto';
+import { CatDTO } from './dto/create-cat-dto';
 import { ICat } from './interfaces/cat.interface';
 
 describe('Cats Controller', () => {

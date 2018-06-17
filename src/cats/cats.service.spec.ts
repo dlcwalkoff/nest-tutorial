@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CatsService } from './cats.service';
-import { CatDTO } from './create-cat-dto/create-cat-dto';
+import { CatDTO } from './dto/create-cat-dto';
 
 describe('CatsService', () => {
   let service: CatsService;
