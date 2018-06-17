@@ -26,18 +26,18 @@ describe('Cats Controller', () => {
     });
   });
 
-  // describe('create', () => {
-  //   it('should return "This action adds a new cat"', () => {
-  //     const appController = module.get<CatsController>(CatsController);
-  //     const data: ICat = {
-  //       name: 'Test',
-  //       age: 3,
-  //       breed: 'aby',
-  //     };
-  //
-  //     expect(appController.create(data)).resolves.toBe(new CatDTO(data));
-  //   });
-  // });
+  describe.skip('create', () => {
+    it('should return "This action adds a new cat"', () => {
+      const appController = module.get<CatsController>(CatsController);
+      const data: ICat = {
+        name: 'Test',
+        age: 3,
+        breed: 'aby',
+      };
+
+      expect(appController.create(data)).resolves.toBe(new CatDTO(data));
+    });
+  });
 
   describe('findOne', () => {
     it('should return "This action returns a id cat"', () => {
