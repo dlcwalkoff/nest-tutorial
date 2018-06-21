@@ -1,6 +1,7 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UsePipes } from '@nestjs/common';
 import { CatsService } from './cats.service';
-import { ICat } from './interfaces/cat.interface';
+import { CatSchema, ICat } from './interfaces/cat.interface';
+import { JoiValidatorPipe } from '../joi-validator/joi-validator.pipe';
 
 @Controller('cats')
 export class CatsController {
@@ -14,6 +15,7 @@ export class CatsController {
   }
 
   @Post()
+  @UsePipes(new JoiValidatorPipe(CatSchema))
   create(@Body() newCat: ICat) {
     this.service.create(newCat);
   }
