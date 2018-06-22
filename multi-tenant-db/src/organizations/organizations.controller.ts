@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { OrganizationDto } from './organization.dto';
 import { ObjectID } from 'typeorm';
-import { Organizations } from './organization.entity';
+import { Organization } from './organization.entity';
 import { OrganizationsService } from './organizations.service';
 
 @Controller('organizations')
@@ -12,19 +12,17 @@ export class OrganizationsController {
   ) {}
 
   @Post()
-  create(@Body() org: OrganizationDto) {
-    console.log('Create: ', org);
-    return this.service.create(org);
+  async create(@Body() org: OrganizationDto) {
+    return await this.service.create(org as Organization);
   }
 
   @Get()
-  async getAll(): Promise<Organizations[]> {
+  async getAll(): Promise<Organization[]> {
     return await this.service.getAll();
   }
 
   @Get(':id')
   async getById(@Param('id') id: string) {
-    console.log(`Get ${id} organization`);
     return await this.service.getById(new ObjectID(id));
   }
 }

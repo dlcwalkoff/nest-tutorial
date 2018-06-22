@@ -1,28 +1,24 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Organizations } from './organization.entity';
+import { Organization } from './organization.entity';
 import { ObjectID, MongoRepository } from 'typeorm';
-import { OrganizationDto } from './organization.dto';
 
 @Injectable()
 export class OrganizationsService {
   constructor(
-    @InjectRepository(Organizations)
-    private readonly organizationsRepository: MongoRepository<Organizations>,
+    @InjectRepository(Organization)
+    private readonly organizationsRepository: MongoRepository<Organization>,
   ) {}
 
-  create(org: OrganizationDto) {
-    console.log('Create: ', org);
-    return this.organizationsRepository.create(org);
+  async create(org: Organization): Promise<Organization> {
+    return await this.organizationsRepository.save<Organization>(org);
   }
 
-  async getAll(): Promise<Organizations[]> {
-    console.log('Get all');
+  async getAll(): Promise<Organization[]> {
     return await this.organizationsRepository.find();
   }
 
-  async getById(id: ObjectID) {
-    console.log(`Get ${id} organization`);
+  async getById(id: ObjectID): Promise<Organization> {
     return await this.organizationsRepository.findOne(id);
   }
 }
